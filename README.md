@@ -382,11 +382,11 @@ int main(int argc, const char* argv[])
 
 Input/Outputs:
 
-Input: 2 - 3 * 4
-Output: -10
+* Input: 2 - 3 * 4
+* Output: -10
 
-Input: max(1, pow(3, 2), cos(-2) * 0.2 - 1)
-Output: 9
+* Input: max(1, pow(3, 2), cos(-2) * 0.2 - 1)
+* Output: 9
 
 What we use:
 
