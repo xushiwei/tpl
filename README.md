@@ -1,7 +1,8 @@
 tpl
 ===
 
-Text Processing Language
+TPL is `Text Processing Language`
+
 
 ## Field Extraction
 
@@ -16,15 +17,15 @@ using namespace tpl;
 
 void main()
 {
-        std::vector<double> values; // you can change vector to other stl containers.
-        
-        if ( "-.1 -0.1 +32. -22323.2e+12" >> real()/append(values) % ws() )
-        {
-                for (std::vector<double>::iterator it = values.begin(); it != values.end(); ++it)
-                {
-                        std::cout << *it << "\n";
-                }
-        }
+  std::vector<double> values; // you can change vector to other stl containers.
+
+  if ( "-.1 -0.1 +32. -22323.2e+12" >> real()/append(values) % ws() )
+  {
+    for (std::vector<double>::iterator it = values.begin(); it != values.end(); ++it)
+    {
+      std::cout << *it << "\n";
+    }
+  }
 }
 ```
 
@@ -54,15 +55,15 @@ using namespace tpl;
 
 void main()
 {
-        std::vector<double> values; // you can change vector to other stl containers.
+  std::vector<double> values; // you can change vector to other stl containers.
         
-        if ( " -.1 , -0.1 , +32. , -22323.2e+12 " >> skipws_[real()/append(values) % gr(',')] )
-        {
-                for (std::vector<double>::iterator it = values.begin(); it != values.end(); ++it)
-                {
-                        std::cout << *it << "\n";
-                }
-        }
+  if ( " -.1 , -0.1 , +32. , -22323.2e+12 " >> skipws_[real()/append(values) % gr(',')] )
+  {
+    for (std::vector<double>::iterator it = values.begin(); it != values.end(); ++it)
+    {
+      std::cout << *it << "\n";
+    }
+  }
 }
 ```
 
@@ -95,19 +96,19 @@ using namespace tpl;
 
 void validation_example_1(const char* str)
 {
-        if (str == integer())
-                std::cout << "  " << str << " is an integer value.\n";
-        else if (str == real())
-                std::cout << "  " << str << " is a real value.\n";
-        else
-                std::cout << "  " << str << " isn't a numeric value.\n";
+  if (str == integer())
+    std::cout << "  " << str << " is an integer value.\n";
+  else if (str == real())
+    std::cout << "  " << str << " is a real value.\n";
+  else
+    std::cout << "  " << str << " isn't a numeric value.\n";
 }
 
 void main()
 {
-        validation_example_1("-135");
-        validation_example_1("+.23e-23");
-        validation_example_1("-.1.e23");
+  validation_example_1("-135");
+  validation_example_1("+.23e-23");
+  validation_example_1("-.1.e23");
 }
 ```
 
@@ -134,19 +135,19 @@ using namespace tpl;
 
 void validation_example_2(const char* str)
 {
-        int val;
-        if (str == integer()/assign(val) && val >= 1 && val <= 12)
-                std::cout << "  " << str << " is an integer value between 1 to 12.\n";
-        else
-                std::cout << "  " << str << " is not valid data.\n";
+  int val;
+  if (str == integer()/assign(val) && val >= 1 && val <= 12)
+    std::cout << "  " << str << " is an integer value between 1 to 12.\n";
+  else
+    std::cout << "  " << str << " is not valid data.\n";
 }
 
 void main()
 {
-        validation_example_2("3");
-        validation_example_2("13");
-        validation_example_2("-135");
-        validation_example_2("+.23e-23");
+  validation_example_2("3");
+  validation_example_2("13");
+  validation_example_2("-135");
+  validation_example_2("+.23e-23");
 }
 ```
 
@@ -177,18 +178,18 @@ using namespace tpl;
 
 void validation_example_3(const char* str)
 {
-        if (str == integer()/meet(arg1 >= 1 && arg1 <= 12))
-                std::cout << "  " << str << " is an integer value between 1 to 12.\n";
-        else
-                std::cout << "  " << str << " is not valid data.\n";
+  if (str == integer()/meet(arg1 >= 1 && arg1 <= 12))
+    std::cout << "  " << str << " is an integer value between 1 to 12.\n";
+  else
+    std::cout << "  " << str << " is not valid data.\n";
 }
 
 void main()
 {
-        validation_example_3("3");
-        validation_example_3("13");
-        validation_example_3("-135");
-        validation_example_3("+.23e-23");
+  validation_example_3("3");
+  validation_example_3("13");
+  validation_example_3("-135");
+  validation_example_3("+.23e-23");
 }
 ```
 
@@ -213,10 +214,10 @@ If you don't want to use Boost Phoenix, you can:
 ```c++
 void validation_example_3(const char* str)
 {
-        if (str == integer()/(ge(1) && le(12)))
-                std::cout << "  " << str << " is an integer value between 1 to 12.\n";
-        else
-                std::cout << "  " << str << " is not valid data.\n";
+  if (str == integer()/(ge(1) && le(12)))
+    std::cout << "  " << str << " is an integer value between 1 to 12.\n";
+  else
+    std::cout << "  " << str << " is not valid data.\n";
 }
 ```
 
@@ -236,32 +237,32 @@ using namespace tpl;
 
 void main()
 {
-        typedef DOM<> dom;
+  typedef DOM<> dom;
 
-        const char source[] = "class Foo : public Base1, Base2 {};";
+  const char source[] = "class Foo : public Base1, Base2 {};";
         
-        dom::Mark tagName("name");
-        dom::NodeMark tagBase("base", true);
-                dom::Mark tagAccess("access");
-                //dom::Mark tagName("name");
+  dom::Mark tagName("name");
+  dom::NodeMark tagBase("base", true);
+    dom::Mark tagAccess("access");
+    //dom::Mark tagName("name");
         
-        dom::Allocator alloc;
-        dom::Document doc(alloc);
+  dom::Allocator alloc;
+  dom::Document doc(alloc);
 
-        if (
-                source >> cpp_skip_
-                        [
-                                gr(c_symbol()/eq("class")) + c_symbol()/tagName + ':' +
-                                (
-                                        !gr(c_symbol()/(eq("public")||eq("private"))/tagAccess) + c_symbol()/tagName
-                                )/tagBase % ',' +
-                                '{' + '}' + ';'
-                        ]/doc
-                )
-        {
-                std::OutputLog log;
-                json_print(alloc, log, doc);
-        }
+  if (
+    source >> cpp_skip_
+      [
+        gr(c_symbol()/eq("class")) + c_symbol()/tagName + ':' +
+        (
+          !gr(c_symbol()/(eq("public")||eq("private"))/tagAccess) + c_symbol()/tagName
+        )/tagBase % ',' +
+        '{' + '}' + ';'
+      ]/doc
+    )
+  {
+    NS_STDEXT::OutputLog log;
+    json_print(alloc, log, doc);
+  }
 }
 ```
 
@@ -310,72 +311,72 @@ using namespace tpl;
 
 double max_value(const double x[], int count)
 {
-        return *std::max_element(x, x+count);
+  return *std::max_element(x, x+count);
 }
 
 void calculator(const char* szExpr)
 {
-        typedef SimpleImplementation impl;
+  typedef SimpleImplementation impl;
 
-        // ---- define rules ----
+  // ---- define rules ----
 
-        std::deque<double> stk;
+  std::deque<double> stk;
 
-        impl::Grammar::Var rFactor;
+  impl::Grammar::Var rFactor;
 
-        impl::Grammar rTerm =
-                rFactor + *(
-                        '*' + rFactor/calc<std::multiplies>(stk) | 
-                        '/' + rFactor/calc<std::divides>(stk) );
+  impl::Grammar rTerm =
+    rFactor + *(
+      '*' + rFactor/calc<std::multiplies>(stk) | 
+      '/' + rFactor/calc<std::divides>(stk) );
 
-        impl::Grammar rExpr =
-                rTerm + *(
-                        '+' + rTerm/calc<std::plus>(stk) |
-                        '-' + rTerm/calc<std::minus>(stk) );
+  impl::Grammar rExpr =
+    rTerm + *(
+      '+' + rTerm/calc<std::plus>(stk) |
+      '-' + rTerm/calc<std::minus>(stk) );
 
-        int arity;
-        impl::Rule rFun =
-                "sin"/calc(stk, sin, arity) | "cos"/calc(stk, cos, arity) |
-                "pow"/calc(stk, pow, arity) | "max"/calc(stk, max_value, arity);
+  int arity;
+  impl::Rule rFun =
+    "sin"/calc(stk, sin, arity) | "cos"/calc(stk, cos, arity) |
+    "pow"/calc(stk, pow, arity) | "max"/calc(stk, max_value, arity);
 
-        rFactor =
-                real()/append(stk) |
-                '-' + rFactor/calc<std::negate>(stk) |
-                '(' + rExpr + ')' |
-                (gr(c_symbol()) + '(' + rExpr % ','/assign(arity) + ')')/(gr(rFun) + '(') |
-                '+' + rFactor;
+  rFactor =
+    real()/append(stk) |
+    '-' + rFactor/calc<std::negate>(stk) |
+    '(' + rExpr + ')' |
+    (gr(c_symbol()) + '(' + rExpr % ','/assign(arity) + ')')/(gr(rFun) + '(') |
+    '+' + rFactor;
 
-        // ---- do match ----
+  // ---- do match ----
 
-        try {
-                if ( szExpr != skipws_[rExpr] )
-                        std::cerr << ">>> ERROR: invalid expression!\n";
-                else
-                        std::cout << stk.back() << '\n';
-        }
-        catch (const std::logic_error& e) {
-                std::cerr << ">>> ERROR: " << e.what() << '\n';
-        }
+  try {
+    if ( szExpr != skipws_[rExpr] )
+      std::cerr << ">>> ERROR: invalid expression!\n";
+    else
+      std::cout << stk.back() << '\n';
+  }
+  catch (const std::logic_error& e) {
+    std::cerr << ">>> ERROR: " << e.what() << '\n';
+  }
 }
 
 int main(int argc, const char* argv[])
 {
-        if (argc == 2) {
-                calculator(argv[1]);
-                return 0;
-        }
-        else {
-                for (;;)
-                {
-                        std::string strExp;
-                        std::cout << "input an expression (q to quit): ";
-                        if (!std::getline(std::cin, strExp) || strExp == "q") {
-                                std::cout << '\n';
-                                return 0;
-                        }
-                        calculator(strExp.c_str());
-                }
-        }
+  if (argc == 2) {
+    calculator(argv[1]);
+    return 0;
+  }
+  else {
+    for (;;)
+    {
+      std::string strExp;
+      std::cout << "input an expression (q to quit): ";
+      if (!std::getline(std::cin, strExp) || strExp == "q") {
+        std::cout << '\n';
+        return 0;
+      }
+      calculator(strExp.c_str());
+    }
+  }
 }
 ```
 
