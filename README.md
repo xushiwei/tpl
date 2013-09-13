@@ -114,7 +114,7 @@ void main()
 
 Output:
 
-```c++
+```
   -135 is an integer value.
   +.23e-23 is a real value.
   -.1.e23 isn't a numeric value.
@@ -153,7 +153,7 @@ void main()
 
 Output:
 
-```c++
+```
   3 is an integer value between 1 to 12.
   13 is not valid data.
   -135 is not valid data.
@@ -195,7 +195,7 @@ void main()
 
 Output:
 
-```c++
+```
   3 is an integer value between 1 to 12.
   13 is not valid data.
   -135 is not valid data.
@@ -382,11 +382,13 @@ int main(int argc, const char* argv[])
 
 Input/Outputs:
 
-* Input: 2 - 3 * 4
-* Output: -10
+```
+Input: 2 - 3 * 4
+Output: -10
 
-* Input: max(1, pow(3, 2), cos(-2) * 0.2 - 1)
-* Output: 9
+Input: max(1, pow(3, 2), cos(-2) * 0.2 - 1)
+Output: 9
+```
 
 What we use:
 
