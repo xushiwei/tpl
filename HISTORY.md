@@ -28,6 +28,8 @@ Most of the C++ programmers do not benefit from Garbage Collection technique (GC
 
 ## tpl - Text Processing Language
 
+TPL is a Text Processing Library/Language.
+
 It was open sourced on [Google Code](https://code.google.com/archive/p/libtpl/) on 2008-06-21.
 
 * https://code.google.com/archive/p/libtpl/
